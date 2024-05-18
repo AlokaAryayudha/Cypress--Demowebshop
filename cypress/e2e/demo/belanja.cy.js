@@ -3,16 +3,17 @@ describe('template spec', () => {
     cy.visit('https://demowebshop.tricentis.com/register')
     
   })
-  it('Failed Regist - Wrong Credentials', () => {
+  it.only('Failed Regist - Wrong Credentials', () => {
     cy.visit('https://demowebshop.tricentis.com/register')
-    cy.get('.ico-register').click()
-    cy.get('#gender-male').click()
-    cy.get('#FirstName').type('Yudha')
-    cy.get('#LastName').type('dayut')
-    cy.get('#Email').type('Dayut#gmail.com')
-    cy.get('#Password').type('1234567')
-    cy.get('#ConfirmPassword').type('1234567')
-    cy.get('#register-button').click()
+    //cy.get('.ico-register').click()
+    //cy.get('#gender-male').click()
+    //cy.get('#FirstName').type('Yudha')
+    //cy.get('#LastName').type('dayut')
+    //cy.get('#Email').type('Dayut#gmail.com')
+    //cy.get('#Password').type('1234567')
+    //cy.get('#ConfirmPassword').type('1234567')
+    //cy.get('#register-button').click()
+    cy.Salahemail('Dayut#gmail.com','1234567')
     cy.get('.field-validation-error > span').should('contain.text','Wrong email')
   })
   it('Empty Form - First Name', () => {

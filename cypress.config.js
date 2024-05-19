@@ -6,7 +6,10 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    screenshotOnRunFailure : false
+    screenshotOnRunFailure : false,
+    viewportHeight: 670,
+    defaultCommandTimeout: 4500,
+    pageLoadTimeout: 80000
 
   },
 });

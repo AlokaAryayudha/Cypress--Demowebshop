@@ -1,9 +1,17 @@
 describe('template spec', () => {
+  function randomEmail(){
+    const randomString = Math.random().toString(36).substring(2,10)
+    const email = "user" + randomString + "@gmail.com"
+    return email
+  }
+
+  let useremail = randomEmail()
+
   beforeEach(() => {
-    cy.visit('https://demowebshop.tricentis.com/register')
+    cy.visit('')
     
   })
-  it.only('Failed Regist - Wrong Credentials', () => {
+  it('Failed Regist - Wrong Credentials', () => {
     cy.visit('https://demowebshop.tricentis.com/register')
     //cy.get('.ico-register').click()
     //cy.get('#gender-male').click()
@@ -14,18 +22,46 @@ describe('template spec', () => {
     //cy.get('#ConfirmPassword').type('1234567')
     //cy.get('#register-button').click()
     cy.Salahemail('Dayut#gmail.com','1234567')
-    cy.get('.field-validation-error > span').should('contain.text','Wrong email')
+    //cy.get('.field-validation-error > span').should('contain.text','Wrong email')
+    cy.verivikasi('.field-validation-error > span','Wrong email')
+  })
+  it.only('Failed Regist - Wrong Credentials', () => {
+    cy.visit('https://demowebshop.tricentis.com/register')
+    cy.get('.ico-register').click()
+    cy.get('#gender-male').click()
+    cy.get('#FirstName').type('Yudha')
+    cy.get('#LastName').type('yuda')
+    cy.fixture('userData.json').then((users)=> {
+    const datauser= users;
+    cy.ketikelement(users.email)
+    cy.ketikelement(users.pass)
+    //masih salah
+
+    })
   })
   it('Empty Form - First Name', () => {
     cy.visit('https://demowebshop.tricentis.com/register')
     cy.get('.ico-register').click()
     cy.get('#gender-male').click()
     cy.get('#LastName').type('yuda')
-    cy.get('#Email').type('Dayut@gmail.com')
+    cy.get('#Email').type(useremail)
     cy.get('#Password').type('1234567')
     cy.get('#ConfirmPassword').type('1234567')
     cy.get('#register-button').click()
     cy.get('.field-validation-error > span').should('contain.text','First name is required.')
+  })
+  it('Perintah command', () => {
+    cy.visit('https://demowebshop.tricentis.com/register')
+    cy.get('.ico-register').click()
+    cy.get('#gender-male').click()
+    cy.get('#FirstName').type('Yudha')
+    cy.get('#LastName').type('yuda')
+    //cy.get('#Email').type('Dayut@gmail.com')
+    cy.ketikelement('#Email','Dayut@gmail.com')
+    cy.get('#Password').type('1234567')
+    cy.get('#ConfirmPassword').type('1234567')
+    cy.get('#register-button').click()
+    cy.get('.validation-summary-errors > ul > li').should('contain.text','The specified email already exists')
   })
   it('Empty Form - Last Name', () => {
     cy.visit('https://demowebshop.tricentis.com/register')

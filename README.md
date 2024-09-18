@@ -1,2 +1,2 @@
-# Belajar-QA-Automation
-coba automation di Sanbercode tambahan
+# QA-Automation
+Automation Bootcamp
